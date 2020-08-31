@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Shipu\Aamarpay\Aamarpay;
 
 class paymentController extends Controller
 {
     public function index(){
-        $url = 'https://sandbox.aamarpay.com/request.php'; // live url https://secure.aamarpay.com/request.php
+        $url = 'https://secure.aamarpay.com/request.php'; // live url 
             $fields = array(
-                'store_id' => '', //store id will be aamarpay,  contact integration@aamarpay.com for test/live id
-                 'amount' => '200', //transaction amount
+                'store_id' => 'joblinkcorporate', //store id will be aamarpay,  contact integration@aamarpay.com for test/live id
+                
+                 'amount' => '250', //transaction amount
                 'payment_type' => 'VISA', //no need to change
                 'currency' => 'BDT',  //currenct will be USD/BDT
                 'tran_id' => rand(1111111,9999999), //transaction id must be unique from your end
@@ -39,7 +41,7 @@ class paymentController extends Controller
                 'opt_b' => 'Akil',
                 'opt_c' => 'Liza', 
                 'opt_d' => 'Sohel',
-                'signature_key' => ''); //signature key will provided aamarpay, contact integration@aamarpay.com for test/live signature key
+                'signature_key' => 'aa04ca784ec0d7e4f675e12998ff999d'); //signature key will provided aamarpay, contact integration@aamarpay.com for test/live signature key
 
                 $fields_string = http_build_query($fields);
          
@@ -65,7 +67,7 @@ class paymentController extends Controller
           </script></head>
           <body onLoad="closethisasap();">
           
-            <form name="redirectpost" method="post" action="<?php echo 'https://sandbox.aamarpay.com/'.$url; ?>"></form>
+            <form name="redirectpost" method="post" action="<?php echo 'https://secure.aamarpay.com'.$url; ?>"></form>
             <!-- for live url https://secure.aamarpay.com -->
           </body>
         </html>
